@@ -4,7 +4,6 @@
     "paths": {
       "tslib": ["./node_modules/tslib/tslib.d.ts"]
     },
-
     "target": "es5",
     "experimentalDecorators": true,
     "sourceMap": true,
@@ -14,10 +13,16 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "declaration": true,
+    "outDir": "dist"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
+  ],
+  "files": [
+    "index.ts"
   ],
   "compileOnSave": false
 }

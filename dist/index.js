@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var controller_1 = require("./src/controller");
 exports.TranslationController = controller_1.TranslationController;
 exports._tGen = function (ctrl) { return function (str, substitutions) {
@@ -105,3 +105,4 @@ var TranslationProvider = (function () {
     return TranslationProvider;
 }());
 exports.TranslationProvider = TranslationProvider;
+//# sourceMappingURL=index.js.map
