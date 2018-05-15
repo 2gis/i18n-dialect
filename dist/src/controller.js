@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TranslationController = (function () {
     function TranslationController(translationGetter, onFailedSubstitution, defaultPluralSelect) {
         this.translationGetter = translationGetter;
@@ -145,3 +145,4 @@ var TranslationController = (function () {
 }());
 exports.TranslationController = TranslationController;
 ;
+//# sourceMappingURL=controller.js.map

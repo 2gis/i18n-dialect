@@ -3,9 +3,10 @@
   "version": "1.0.8",
   "description": "Internationalization support library",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "karma start --browsers Firefox --single-run",
-    "build": "tsc --noEmit && tsc index.ts --outDir dist",
+    "build": "tsc",
     "testwatch": "karma start --browsers Firefox"
   },
   "repository": {
