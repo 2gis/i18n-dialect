@@ -94,7 +94,7 @@ export class TranslationController {
   }
 
   // Select proper plural form based on descriptor
-  protected selectPluralForm(forms: string[], descriptor: Descriptor, forceUntranslated: boolean): string {
+  protected selectPluralForm(forms: string[], descriptor: Descriptor, forceUntranslated: boolean): string | undefined {
     switch (descriptor.type) {
       case '_t':
       case '_pt':
@@ -112,8 +112,16 @@ export class TranslationController {
   }
 
   // Substitute parameters to %1, %2, etc and %% placeholders
-  protected substituteStrings(str: string, descriptor: Descriptor): string {
-    let tmpStr = str;
+  protected substituteStrings(str: string | undefined, descriptor: Descriptor): string {
+    let tmpStr = str || '';
+
+    // Fallback, than everything went wrong
+    if (!tmpStr.length) {
+      if (this.onFailedSubstitution) {
+        this.onFailedSubstitution('', descriptor.substitutions);
+      }
+      return descriptor.msgid;
+    }
 
     // substitute optional parameters
     descriptor.substitutions.forEach((value, index) => {
@@ -127,7 +135,7 @@ export class TranslationController {
 
     // error handling
     if (this.onFailedSubstitution && tmpStr.match(/%\d+/)) {
-      this.onFailedSubstitution(str, descriptor.substitutions);
+      this.onFailedSubstitution(str || '', descriptor.substitutions);
     }
 
     return tmpStr;

@@ -98,7 +98,14 @@ var TranslationController = (function () {
     };
     // Substitute parameters to %1, %2, etc and %% placeholders
     TranslationController.prototype.substituteStrings = function (str, descriptor) {
-        var tmpStr = str;
+        var tmpStr = str || '';
+        // Fallback, than everything went wrong
+        if (!tmpStr.length) {
+            if (this.onFailedSubstitution) {
+                this.onFailedSubstitution('', descriptor.substitutions);
+            }
+            return descriptor.msgid;
+        }
         // substitute optional parameters
         descriptor.substitutions.forEach(function (value, index) {
             tmpStr = tmpStr.replace(new RegExp('%' + (index + 1), 'ig'), (value || '').toString());
@@ -109,7 +116,7 @@ var TranslationController = (function () {
         }
         // error handling
         if (this.onFailedSubstitution && tmpStr.match(/%\d+/)) {
-            this.onFailedSubstitution(str, descriptor.substitutions);
+            this.onFailedSubstitution(str || '', descriptor.substitutions);
         }
         return tmpStr;
     };

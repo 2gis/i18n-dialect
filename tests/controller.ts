@@ -283,6 +283,23 @@ describe('I18n end-user library', () => {
     );
   });
 
+  it('substituteStrings throws error if there is no plural form for current factor in current locale', () => {
+    let t = getController();
+    let str = undefined;
+    let descr: Descriptor = {
+      type: '_nt',
+      factor: 2,
+      msgid: 'test1', // ignored
+      msgidPlural: 'test3', // ignored
+      allPlurals: ['test1', 'test2'],
+      msgstr: [],
+      substitutions: ['param1', 'param2'],
+    };
+
+    assert.equal(t.pSubstituteStrings(str, descr), 'test1');
+    assert.equal(getFailedSubstitutions().length, 1);
+  });
+
   it('substituteStrings throws error if not all substitutions have been done', () => {
     let t = getController();
     let str = 'This str has %1, %2 and %3 as values';
