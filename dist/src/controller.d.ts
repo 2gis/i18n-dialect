@@ -15,8 +15,8 @@ export declare class TranslationController {
     protected getDictKeyForDescriptor(descriptor: Descriptor): string | undefined;
     protected getDictKeyForEntry(item: I18NEntry): string | undefined;
     protected getUntranslatedFallback(descriptor: Descriptor): string[];
-    protected selectPluralForm(forms: string[], descriptor: Descriptor, forceUntranslated: boolean): string;
-    protected substituteStrings(str: string, descriptor: Descriptor): string;
+    protected selectPluralForm(forms: string[], descriptor: Descriptor, forceUntranslated: boolean): string | undefined;
+    protected substituteStrings(str: string | undefined, descriptor: Descriptor): string;
     protected makeNewDict(items: I18NEntry[]): {
         [key: string]: string[];
     };

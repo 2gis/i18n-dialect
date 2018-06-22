@@ -15,7 +15,7 @@ export class TranslationControllerTestable extends TranslationController {
   public pSelectPluralForm = (
     forms: string[], descriptor: Descriptor, forceUntranslated: boolean
   ) => this.selectPluralForm(forms, descriptor, forceUntranslated);
-  public pSubstituteStrings = (str: string, descriptor: Descriptor) => this.substituteStrings(str, descriptor);
+  public pSubstituteStrings = (str: string | undefined, descriptor: Descriptor) => this.substituteStrings(str, descriptor);
   public pMakeNewDict = (items: I18NEntry[]) => this.makeNewDict(items);
   public pMakePluralSelectFunction = (selectStr: string) => this.makePluralSelectFunction(selectStr);
 }
